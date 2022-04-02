@@ -11,14 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'M.A. Rahman',
       theme: ThemeData(
         // This is the theme of your application.
         //
-         
+
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter APP'),
     );
   }
 }
@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-  
   final String title;
 
   @override
@@ -38,23 +37,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-    
       _counter++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       appBar: AppBar(
-       
         title: Text(widget.title),
       ),
       body: Center(
-        
         child: Column(
-         
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
