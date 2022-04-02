@@ -1,71 +1,66 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'M.A. Rahman',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-
-        primarySwatch: Colors.blue,
+  return runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.blue,
+        appBar: AppBar(
+          title: Text('Dicee',textAlign: Center),
+          backgroundColor: Colors.green,
+        ),
+        body: DicePage(),
       ),
-      home: const MyHomePage(title: 'Flutter APP'),
-    );
-  }
+    ),
+  );
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
+class DicePage extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _DicePageState createState() => _DicePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 1;
+  int rightDiceNumber = 1;
 
-  void _incrementCounter() {
+  void changeDiceFace() {
     setState(() {
-      _counter++;
+      leftDiceNumber = Random().nextInt(6) + 1;
+      rightDiceNumber = Random().nextInt(6) + 1;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    return Center(
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: FlatButton(
+              child: Image.asset(
+                'images/dice$leftDiceNumber.png',
+              ),
+              onPressed: () {
+                changeDiceFace();
+              },
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+          ),
+          //Get students to create the second die as a challenge
+          Expanded(
+            child: FlatButton(
+              child: Image.asset(
+                'images/dice$rightDiceNumber.png',
+              ),
+              onPressed: () {
+                changeDiceFace();
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
